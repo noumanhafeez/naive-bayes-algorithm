@@ -1,0 +1,1 @@
+# This Repository is basically for coding probabilities and naive bayes from scratch.
