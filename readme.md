@@ -58,3 +58,6 @@
 ## Indeed, you can see this from code and see manually, how label encoding are labeling the features.
 # This Repository is basically for coding probabilities and naive bayes from scratch.
 
+
+
+# This will continue in future works!
