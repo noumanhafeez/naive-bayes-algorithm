@@ -56,3 +56,5 @@
 ## Now, We will apply labelencoding to features one by one. 
 ## NOTE: Label Encoding do label the data in alphabetical order. Means, a:0, b:1, c:3 ... etc. 
 ## Indeed, you can see this from code and see manually, how label encoding are labeling the features.
+# This Repository is basically for coding probabilities and naive bayes from scratch.
+
