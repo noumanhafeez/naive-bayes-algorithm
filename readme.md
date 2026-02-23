@@ -1,63 +1,162 @@
-# Mushroom Dataset
-
-# Detail of features of dataset:
-
-## Attribute Information: (classes: edible=e, poisonous=p)
-
-## cap-shape: bell=b,conical=c,convex=x,flat=f, knobbed=k,sunken=s
-
-## cap-surface: fibrous=f,grooves=g,scaly=y,smooth=s
-
-## cap-color: brown=n,buff=b,cinnamon=c,gray=g,green=r,pink=p,purple=u,red=e,white=w,yellow=y
-
-## bruises: bruises=t,no=f
-
-## odor: almond=a,anise=l,creosote=c,fishy=y,foul=f,musty=m,none=n,pungent=p,spicy=s
-
-## gill-attachment: attached=a,descending=d,free=f,notched=n
-
-## gill-spacing: close=c,crowded=w,distant=d
-
-## gill-size: broad=b,narrow=n
-
-## gill-color: black=k,brown=n,buff=b,chocolate=h,gray=g, green=r,orange=o,pink=p,purple=u,red=e,white=w,yellow=y
-
-## stalk-shape: enlarging=e,tapering=t
-
-## stalk-root: bulbous=b,club=c,cup=u,equal=e,rhizomorphs=z,rooted=r,missing=?
-
-## stalk-surface-above-ring: fibrous=f,scaly=y,silky=k,smooth=s
-
-## stalk-surface-below-ring: fibrous=f,scaly=y,silky=k,smooth=s
-
-## stalk-color-above-ring: brown=n,buff=b,cinnamon=c,gray=g,orange=o,pink=p,red=e,white=w,yellow=y
-
-## stalk-color-below-ring: brown=n,buff=b,cinnamon=c,gray=g,orange=o,pink=p,red=e,white=w,yellow=y
-
-## veil-type: partial=p,universal=u
-
-## veil-color: brown=n,orange=o,white=w,yellow=y
-
-## ring-number: none=n,one=o,two=t
-
-## ring-type: cobwebby=c,evanescent=e,flaring=f,large=l,none=n,pendant=p,sheathing=s,zone=z
-
-## spore-print-color: black=k,brown=n,buff=b,chocolate=h,green=r,orange=o,purple=u,white=w,yellow=y
-
-## population: abundant=a,clustered=c,numerous=n,scattered=s,several=v,solitary=y
-
-## habitat: grasses=g,leaves=l,meadows=m,paths=p,urban=u,waste=w,woods=d
-
-## There are 23 columns which are features to identify whether the mushroom is edible or poissnous.
-## And all features are categorical and unique. Which means, We don't need to do hard cleaning or pre-processing the
-## data. As features are in object datatype. So, we will encode them using labelencoding and then convert them to
-## int type.
-
-## Now, We will apply labelencoding to features one by one. 
-## NOTE: Label Encoding do label the data in alphabetical order. Means, a:0, b:1, c:3 ... etc. 
-## Indeed, you can see this from code and see manually, how label encoding are labeling the features.
-# This Repository is basically for coding probabilities and naive bayes from scratch.
-
-
-
-# This will continue in future works!
+# 🍄 Naive Bayes Classifier – From Scratch & Sklearn
+#
+# This project implements the Naive Bayes classification algorithm in two different ways.
+#
+# 1. From Scratch (Custom Implementation using NumPy)
+# 2. Using Scikit-Learn (CategoricalNB)
+#
+# The model is trained on the Mushroom Dataset to classify mushrooms as:
+#
+# Edible
+# Poisonous
+#
+# The project also supports prediction from a custom CSV file.
+#
+# ------------------------------------------------------------
+# Project Structure
+# ------------------------------------------------------------
+#
+# naive-bayes-algorithm/
+# ├── mushrooms.csv
+# ├── mushroom_input.csv
+# ├── Naive_Bayes_Scratch.py
+# ├── Naive_Bayes.py
+# ├── evaluate_metric.py
+# ├── main.py
+# └── README.md
+#
+# ------------------------------------------------------------
+# Implementation Details
+# ------------------------------------------------------------
+#
+# 1. Naive Bayes From Scratch
+#
+# Implemented inside:
+# Naive_Bayes_Scratch.py
+#
+# Step 1: Data Encoding
+# All categorical features are converted into numeric values using LabelEncoder.
+# Encoders are stored in self.encoders so they can be reused during prediction.
+#
+# Step 2: Train-Test Split
+# train_test_split(test_size=0.2, random_state=42)
+# 80 percent data is used for training.
+# 20 percent data is used for testing.
+#
+# Step 3: Prior Probabilities
+# P(c) = count(c) / total_samples
+# Priors are stored in log form using np.log() to avoid numerical underflow.
+#
+# Step 4: Likelihood Probabilities with Laplace Smoothing
+# P(x_i | c) = (count + 1) / (N_c + K)
+# N_c is the number of samples in class c.
+# K is the number of unique feature values.
+# Laplace smoothing prevents zero probability issues.
+# Likelihoods are stored as log probabilities.
+#
+# Step 5: Prediction Rule
+# For each sample:
+# log P(c) + sum of log P(x_i | c)
+# The class with the highest score is selected.
+#
+# ------------------------------------------------------------
+# 2. Sklearn Implementation
+# ------------------------------------------------------------
+#
+# Implemented inside:
+# Naive_Bayes.py
+#
+# Uses:
+# from sklearn.naive_bayes import CategoricalNB
+#
+# Workflow:
+# Encode dataset
+# Split dataset
+# Train model
+# Predict
+# Evaluate performance
+#
+# ------------------------------------------------------------
+# Evaluation Metrics
+# ------------------------------------------------------------
+#
+# Implemented inside:
+# evaluate_metric.py
+#
+# Metrics included:
+# Accuracy
+# Precision
+# Recall
+# F1-Score
+# Confusion Matrix
+#
+# ------------------------------------------------------------
+# How To Run The Project
+# ------------------------------------------------------------
+#
+# Step 1: Install Required Libraries
+# pip install pandas numpy scikit-learn
+#
+# Step 2: Run the project
+# python main.py
+#
+# You will see:
+# 1. Run Naive Bayes on train/test split
+# 2. Predict from custom CSV
+#
+# Choose your desired option.
+#
+# ------------------------------------------------------------
+# Predict From Custom CSV
+# ------------------------------------------------------------
+#
+# Example file:
+# mushroom_input.csv
+#
+# Important Rules:
+# The file must contain only feature columns.
+# The file must NOT contain the target column (class).
+# Column names must match the training dataset.
+# Categories must already exist in training data.
+# Encoding from training must be reused.
+#
+# Example Output:
+# Sample 1: Edible
+# Sample 2: Poisonous
+#
+# ------------------------------------------------------------
+# Important Notes
+# ------------------------------------------------------------
+#
+# Column order must match the training dataset.
+# Log probabilities are used for numerical stability.
+# Laplace smoothing prevents zero probability issues.
+# Custom prediction reuses saved encoders.
+#
+# ------------------------------------------------------------
+# Key Learning Outcomes
+# ------------------------------------------------------------
+#
+# Implemented Naive Bayes from scratch.
+# Applied Laplace smoothing.
+# Used log probabilities for stability.
+# Built Scikit-Learn version.
+# Created custom CSV prediction system.
+# Designed modular ML workflow.
+#
+# ------------------------------------------------------------
+# Future Improvements
+# ------------------------------------------------------------
+#
+# Add probability confidence scores.
+# Handle unseen categories safely.
+# Save predictions to CSV.
+# Convert to CLI tool.
+# Build Streamlit Web App.
+#
+# ------------------------------------------------------------
+# Author
+# ------------------------------------------------------------
+#
+# Nouman Hafeez
+# Machine Learning Enthusiast
